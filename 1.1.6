@@ -1,0 +1,511 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOcZSRDXS13btJZHlCLZs29",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/rajulapudiuday-stack/NASSCOM_25211a66e3/blob/main/1.1.6\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "12bebd30",
+        "outputId": "0a6b1b5f-28ef-4de4-cd06-53c4ec6e206b"
+      },
+      "source": [
+        "import json\n",
+        "\n",
+        "notebook_path = '/content/1.1.6Exception_Handling_and_Debugging_in_Python.ipynb'\n",
+        "with open(notebook_path, 'r', encoding='utf-8') as f:\n",
+        "    nb_data = json.load(f)\n",
+        "\n",
+        "# Inspect the cells in the notebook\n",
+        "for idx, cell in enumerate(nb_data.get('cells', [])):\n",
+        "    cell_type = cell.get('cell_type')\n",
+        "    source = ''.join(cell.get('source', []))\n",
+        "    print(f\"--- Cell {idx} ({cell_type}) ---\")\n",
+        "    print(source[:300] + ('...' if len(source) > 300 else ''))\n",
+        "    print('\\n')"
+      ],
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "--- Cell 0 (markdown) ---\n",
+            "# Exception Handling and Debugging in Python\n",
+            "\n",
+            "✅ What exceptions are\n",
+            "\n",
+            "⚠️ try, except, else, finally\n",
+            "\n",
+            "✅ Raising exceptions manually\n",
+            "\n",
+            "🔍 Basic debugging practices (print, traceback, pdb)\n",
+            "\n",
+            "\n",
+            "--- Cell 1 (markdown) ---\n",
+            "#✅ 1. What is an Exception?\n",
+            "\n",
+            "Exceptions are errors that occur at runtime and stop the program unless handled.\n",
+            "\n",
+            "\n",
+            "--- Cell 2 (code) ---\n",
+            "# Example: Division by zero error\n",
+            "# print(10 / 0)  # This will raise ZeroDivisionError\n",
+            "\n",
+            "\n",
+            "\n",
+            "--- Cell 3 (markdown) ---\n",
+            "#⚠️ 2. Basic Try-Except Block\n",
+            "\n",
+            "\n",
+            "--- Cell 4 (code) ---\n",
+            "# Use try-except to handle errors gracefully\n",
+            "\n",
+            "try:\n",
+            "    x = int(input(\"Enter a number: \"))\n",
+            "    print(\"You entered:\", x)\n",
+            "except ValueError:\n",
+            "    print(\"That was not a valid number!\")\n",
+            "\n",
+            "\n",
+            "\n",
+            "--- Cell 5 (markdown) ---\n",
+            "#🔁 3. Try-Except-Else-Finally Structure\n",
+            "\n",
+            "\n",
+            "--- Cell 6 (code) ---\n",
+            "try:\n",
+            "    num = int(input(\"Enter a number to divide 100: \"))\n",
+            "    result = 100 / num\n",
+            "except ZeroDivisionError:\n",
+            "    print(\"Cannot divide by zero!\")\n",
+            "except ValueError:\n",
+            "    print(\"Invalid input! Not a number.\")\n",
+            "else:\n",
+            "    print(\"Result is:\", result)\n",
+            "finally:\n",
+            "    print(\"Execution complete. This block alway...\n",
+            "\n",
+            "\n",
+            "--- Cell 7 (markdown) ---\n",
+            "#🧨 4. Catching Multiple Exceptions\n",
+            "\n",
+            "\n",
+            "--- Cell 8 (code) ---\n",
+            "try:\n",
+            "    a = int(\"ten\")  # Causes ValueError\n",
+            "    b = 10 / 0      # Causes ZeroDivisionError\n",
+            "except (ValueError, ZeroDivisionError) as e:\n",
+            "    print(\"An error occurred:\", e)\n",
+            "\n",
+            "\n",
+            "\n",
+            "--- Cell 9 (markdown) ---\n",
+            "#🚫 5. Raising Custom Exceptions\n",
+            "\n",
+            "\n",
+            "--- Cell 10 (code) ---\n",
+            "# Raise your own error using 'raise'\n",
+            "\n",
+            "def check_age(age):\n",
+            "    if age < 0:\n",
+            "        raise ValueError(\"Age cannot be negative!\")\n",
+            "    else:\n",
+            "        print(\"Age is valid.\")\n",
+            "\n",
+            "try:\n",
+            "    check_age(-5)\n",
+            "except ValueError as e:\n",
+            "    print(\"Caught an exception:\", e)\n",
+            "\n",
+            "\n",
+            "\n",
+            "--- Cell 11 (markdown) ---\n",
+            "#🔍 6. DEBUGGING PRACTICES\n",
+            "\n",
+            "🛠️ A. Using print() statements\n",
+            "\n",
+            "\n",
+            "--- Cell 12 (code) ---\n",
+            "def divide(a, b):\n",
+            "    print(f\"Dividing {a} by {b}\")  # Debug info\n",
+            "    return a / b\n",
+            "\n",
+            "print(divide(10, 2))  # Correct\n",
+            "# print(divide(10, 0))  # Uncomment to see the crash\n",
+            "\n",
+            "\n",
+            "\n",
+            "--- Cell 13 (markdown) ---\n",
+            "#🛠️ B. Using traceback module (for detailed errors)\n",
+            "\n",
+            "\n",
+            "--- Cell 14 (code) ---\n",
+            "import traceback\n",
+            "\n",
+            "try:\n",
+            "    result = 10 / 0\n",
+            "except Exception as e:\n",
+            "    print(\"Something went wrong.\")\n",
+            "    traceback.print_exc()  # Prints detailed error stack\n",
+            "\n",
+            "\n",
+            "\n",
+            "--- Cell 15 (markdown) ---\n",
+            "#🛠️ C. Using the Python Debugger (pdb)\n",
+            "\n",
+            "\n",
+            "--- Cell 16 (code) ---\n",
+            "# Uncomment to use the debugger\n",
+            "# import pdb\n",
+            "\n",
+            "def calculate_total(price, quantity):\n",
+            "    # pdb.set_trace()  # Start interactive debugger here\n",
+            "    return price * quantity\n",
+            "\n",
+            "print(calculate_total(50, 2))\n",
+            "\n",
+            "\n",
+            "\n",
+            "--- Cell 17 (markdown) ---\n",
+            "#🧪 BONUS: Common Exceptions in Python\n",
+            "\n",
+            "| Exception           | Description                           |\n",
+            "| ------------------- | ------------------------------------- |\n",
+            "| `ValueError`        | Wrong value type (e.g. int(\"abc\"))    |\n",
+            "| `TypeError`         | Operation on incompatible types       |\n",
+            "| `Ze...\n",
+            "\n",
+            "\n",
+            "--- Cell 18 (markdown) ---\n",
+            "#✅ Summary\n",
+            "Use try...except to handle runtime errors.\n",
+            "\n",
+            "else: runs when no error occurs.\n",
+            "\n",
+            "finally: always runs.\n",
+            "\n",
+            "Use raise to throw your own exceptions.\n",
+            "\n",
+            "Debug with print, traceback, or pdb.\n",
+            "\n",
+            "\n",
+            "--- Cell 19 (code) ---\n",
+            "\n",
+            "\n",
+            "\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "765f93cd",
+        "outputId": "3e407a27-d6d6-4c01-9a56-a16f28b58e9b"
+      },
+      "source": [
+        "# Cell 2: Division by zero\n",
+        "print(\"--- Executing Cell 2 ---\")\n",
+        "try:\n",
+        "    print(10 / 0)\n",
+        "except ZeroDivisionError as e:\n",
+        "    print(\"Caught expected exception:\", e)"
+      ],
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "--- Executing Cell 2 ---\n",
+            "Caught expected exception: division by zero\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "e927f9d6",
+        "outputId": "67be011f-48e2-4cb0-d407-11fad6ebe01f"
+      },
+      "source": [
+        "# Cell 4: Basic Try-Except Block (using pre-defined values to run without blocking interactive input)\n",
+        "print(\"--- Executing Cell 4 ---\")\n",
+        "inputs = [\"42\", \"abc\"]\n",
+        "for val in inputs:\n",
+        "    print(f\"Input: {val}\")\n",
+        "    try:\n",
+        "        x = int(val)\n",
+        "        print(\"You entered:\", x)\n",
+        "    except ValueError:\n",
+        "        print(\"That was not a valid number!\")"
+      ],
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "--- Executing Cell 4 ---\n",
+            "Input: 42\n",
+            "You entered: 42\n",
+            "Input: abc\n",
+            "That was not a valid number!\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "651ba357",
+        "outputId": "9b9ce171-d5b5-4161-8754-4095c8ab75dc"
+      },
+      "source": [
+        "# Cell 6: Try-Except-Else-Finally\n",
+        "print(\"--- Executing Cell 6 ---\")\n",
+        "test_cases = [\"20\", \"0\", \"hello\"]\n",
+        "for val in test_cases:\n",
+        "    print(f\"\\nTrying to divide 100 by: {val}\")\n",
+        "    try:\n",
+        "        num = int(val)\n",
+        "        result = 100 / num\n",
+        "    except ZeroDivisionError:\n",
+        "        print(\"Cannot divide by zero!\")\n",
+        "    except ValueError:\n",
+        "        print(\"Invalid input! Not a number.\")\n",
+        "    else:\n",
+        "        print(\"Result is:\", result)\n",
+        "    finally:\n",
+        "        print(\"Execution complete. This block always runs.\")"
+      ],
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "--- Executing Cell 6 ---\n",
+            "\n",
+            "Trying to divide 100 by: 20\n",
+            "Result is: 5.0\n",
+            "Execution complete. This block always runs.\n",
+            "\n",
+            "Trying to divide 100 by: 0\n",
+            "Cannot divide by zero!\n",
+            "Execution complete. This block always runs.\n",
+            "\n",
+            "Trying to divide 100 by: hello\n",
+            "Invalid input! Not a number.\n",
+            "Execution complete. This block always runs.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "1d91e246",
+        "outputId": "89c518dc-6bc9-42df-ff2b-bf21c4eb780b"
+      },
+      "source": [
+        "# Cell 8: Catching Multiple Exceptions\n",
+        "print(\"--- Executing Cell 8 ---\")\n",
+        "try:\n",
+        "    a = int(\"ten\")  # Causes ValueError\n",
+        "    b = 10 / 0      # Causes ZeroDivisionError\n",
+        "except (ValueError, ZeroDivisionError) as e:\n",
+        "    print(\"An error occurred:\", e)"
+      ],
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "--- Executing Cell 8 ---\n",
+            "An error occurred: invalid literal for int() with base 10: 'ten'\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "a4e78982",
+        "outputId": "1d1ced51-2776-4567-8976-0eb1a3e6566f"
+      },
+      "source": [
+        "# Cell 10: Raising Custom Exceptions\n",
+        "print(\"--- Executing Cell 10 ---\")\n",
+        "def check_age(age):\n",
+        "    if age < 0:\n",
+        "        raise ValueError(\"Age cannot be negative!\")\n",
+        "    else:\n",
+        "        print(\"Age is valid.\")\n",
+        "\n",
+        "try:\n",
+        "    check_age(-5)\n",
+        "except ValueError as e:\n",
+        "    print(\"Caught an exception:\", e)"
+      ],
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "--- Executing Cell 10 ---\n",
+            "Caught an exception: Age cannot be negative!\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "d1fa7fff",
+        "outputId": "a9684675-1af8-4c71-f3c5-6d2e52b5c0ac"
+      },
+      "source": [
+        "# Cell 12: Using print() statements\n",
+        "print(\"--- Executing Cell 12 ---\")\n",
+        "def divide(a, b):\n",
+        "    print(f\"Dividing {a} by {b}\")  # Debug info\n",
+        "    return a / b\n",
+        "\n",
+        "print(\"Result:\", divide(10, 2))"
+      ],
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "--- Executing Cell 12 ---\n",
+            "Dividing 10 by 2\n",
+            "Result: 5.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "b6c38b0b",
+        "outputId": "80989e75-96d9-4e15-9e8d-e7973378075b"
+      },
+      "source": [
+        "# Cell 14: Using traceback module\n",
+        "print(\"--- Executing Cell 14 ---\")\n",
+        "import traceback\n",
+        "\n",
+        "try:\n",
+        "    result = 10 / 0\n",
+        "except Exception as e:\n",
+        "    print(\"Something went wrong.\")\n",
+        "    traceback.print_exc()  # Prints detailed error stack"
+      ],
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "--- Executing Cell 14 ---\n",
+            "Something went wrong.\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "Traceback (most recent call last):\n",
+            "  File \"/tmp/ipykernel_1463/3640277646.py\", line 6, in <cell line: 0>\n",
+            "    result = 10 / 0\n",
+            "             ~~~^~~\n",
+            "ZeroDivisionError: division by zero\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "7dca89c5",
+        "outputId": "8dbcb36e-2346-4521-8a31-e672df33fa1b"
+      },
+      "source": [
+        "# Cell 16: Debugger example structure\n",
+        "print(\"--- Executing Cell 16 ---\")\n",
+        "def calculate_total(price, quantity):\n",
+        "    return price * quantity\n",
+        "\n",
+        "print(\"Total:\", calculate_total(50, 2))"
+      ],
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "--- Executing Cell 16 ---\n",
+            "Total: 100\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
